@@ -1,6 +1,6 @@
 Contenedores usados: 2
 Volumen disponible: 60 m3
-Volumen ocupado: 32 m3 (53,33333%)
+Volumen ocupado: 32 m3 (53.33333%)
 Cajas a transportar: 6
 Contenedor		Formato		Coordenadas		Orientación
 1				C			(0, 1, 5)		1
