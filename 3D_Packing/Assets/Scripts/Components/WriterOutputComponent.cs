@@ -1,18 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Packing_3D.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Packing_3D.Components
 {
-    public class WriterComponent : MonoBehaviour
+    public class WriterOutputComponent : MonoBehaviour, IWriter
     {
-        public void WriteInputFile()
-        {
-            print("input");
-        }
-
-        public void WriteOutputFile()
+        public void WriteFile()
         {
             /*
                 2 3 5

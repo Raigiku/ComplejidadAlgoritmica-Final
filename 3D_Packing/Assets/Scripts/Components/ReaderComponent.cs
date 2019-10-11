@@ -9,6 +9,9 @@ namespace Packing_3D.Components
     {
         private Dictionary<string, Format> formats;
         private Vector3 containerSize;
+        
+        [SerializeField]
+        private GameObject containerPrefab;
 
         public void ClearEntities()
         {
@@ -20,6 +23,12 @@ namespace Packing_3D.Components
             var input_lines = File.ReadAllLines(@"Assets\input.txt");
             ParseInputContainer(input_lines[0].Split(' '));
             ParseInputFormats(input_lines);
+        }
+
+        public void ReadOutput()
+        {
+            var output_lines = System.IO.File.ReadAllLines(@"Assets\output.txt");
+            ParseOutputBlocks(output_lines);
         }
 
         private void ParseInputContainer(string[] dimensions)
@@ -58,6 +67,40 @@ namespace Packing_3D.Components
                         Format = formats[id]
                     });
                 }
+            }
+        }
+
+        private void ParseOutputBlocks(string[] output_lines)
+        {
+            var total_containers = int.Parse(output_lines[0].Split(' ')[2]);
+            var containers = new List<GameObject>();
+            for (var i = 0; i < total_containers; ++i)
+            {
+                var newContainer = Instantiate(containerPrefab, transform);
+                var newContainerBox = newContainer.transform.GetChild(0);
+                newContainerBox.localScale = containerSize;
+                containers.Add(newContainer);
+            }
+
+            var total_blocks = int.Parse(output_lines[3].Split(' ')[3]);
+            for (var i = 0; i < total_blocks; ++i)
+            {
+                var containerId = 1;
+                var formatId = "C";
+                var position = new Vector3(2, 2, 2); // Clean
+                var orientation = 1;
+
+                var blockTransform = containers[containerId - 1].transform.GetChild(1);
+                var storeBlocksComponent = blockTransform.GetComponent<StoreBlocksComponent>();
+
+                var block = new Block
+                {
+                    Position = position,
+                    Container = null,
+                    Format = formats[formatId],
+                    Orientation = orientation,
+                };
+                storeBlocksComponent.CreateBlock(block);
             }
         }
     }
