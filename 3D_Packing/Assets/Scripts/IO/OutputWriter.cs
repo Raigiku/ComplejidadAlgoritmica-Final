@@ -1,11 +1,12 @@
 using UnityEngine;
-using Packing_3D.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Packing_3D.Models;
+using Packing_3D.Interfaces;
 
-namespace Packing_3D.Components
+namespace Packing_3D.IO
 {
-    public class WriterOutputComponent : MonoBehaviour, IWriter
+    public class OutputWriter : IWriter
     {
         public void WriteFile()
         {

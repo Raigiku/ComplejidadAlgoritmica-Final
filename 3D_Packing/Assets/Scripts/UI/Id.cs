@@ -2,9 +2,9 @@
 using UnityEngine;
 using TMPro;
 
-namespace Packing_3D.Components
+namespace Packing_3D.UI
 {
-    public class IdComponent : MonoBehaviour
+    public class Id : MonoBehaviour
     {
         [SerializeField]
         private List<TMP_Text> idTexts = new List<TMP_Text>();

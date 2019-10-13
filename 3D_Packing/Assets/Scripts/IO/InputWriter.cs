@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
-using Packing_3D.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Packing_3D.Models;
+using Packing_3D.Interfaces;
 
-
-namespace Packing_3D.Components
+namespace Packing_3D.IO
 {
-    public class WriterInputComponent : MonoBehaviour, IWriter
+    public class InputWriter : MonoBehaviour, IWriter
     {
 
-        int Width;  
+        int Width;
         int Hight;
         int Lenght;
 
@@ -22,7 +20,7 @@ namespace Packing_3D.Components
         StringBuilder Id;
         System.Random random;
 
-        public  void WriteFile()
+        public void WriteFile()
         {
 
             Initializer();
@@ -35,7 +33,7 @@ namespace Packing_3D.Components
                 for (int i = 0; i < FormatQuantity; ++i)
                 {
                     int quantity = random.Next(1, 100);
-                    file.WriteLine($"{quantity} {Formats[i].Id} {Formats[i].Size.x} {Formats[i].Size.y} {Formats[i].Size.z}");   
+                    file.WriteLine($"{quantity} {Formats[i].Id} {Formats[i].Size.x} {Formats[i].Size.y} {Formats[i].Size.z}");
                 }
             }
         }
@@ -47,8 +45,6 @@ namespace Packing_3D.Components
             random = new System.Random();
         }
 
-
-
         public void GenerateInput()
         {
             Lenght = random.Next(1, 500);
@@ -57,7 +53,7 @@ namespace Packing_3D.Components
 
             FormatQuantity = random.Next(1, 500);
 
-           
+
 
             for (int i = 0; i < FormatQuantity; ++i)
             {
@@ -67,15 +63,15 @@ namespace Packing_3D.Components
 
                 int h, w, l;
                 l = random.Next(1, this.Lenght);
-                h = random.Next(1, Math.Min(l , this.Hight) );
-                w = random.Next(1, Math.Min(h , this.Width) );
+                h = random.Next(1, Math.Min(l, this.Hight));
+                w = random.Next(1, Math.Min(h, this.Width));
 
                 format.Size = new Vector3(h, w, l);
-     
+
                 Formats.Add(format);
             }
 
-           
+
         }
 
         private StringBuilder GenerateString(StringBuilder code)
