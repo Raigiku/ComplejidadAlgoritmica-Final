@@ -7,7 +7,7 @@ using Packing_3D.Interfaces;
 
 namespace Packing_3D.IO
 {
-    public class InputWriter : MonoBehaviour, IWriter
+    public class TxtInputWriter : Writer
     {
 
         int Width;
@@ -20,7 +20,7 @@ namespace Packing_3D.IO
         StringBuilder Id;
         System.Random random;
 
-        public void WriteFile()
+        public override void WriteFile()
         {
 
             Initializer();

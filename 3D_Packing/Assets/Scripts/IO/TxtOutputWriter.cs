@@ -6,9 +6,9 @@ using Packing_3D.Interfaces;
 
 namespace Packing_3D.IO
 {
-    public class OutputWriter : IWriter
+    public class TxtOutputWriter : Writer
     {
-        public void WriteFile()
+        public override void WriteFile()
         {
             /*
                 2 3 5

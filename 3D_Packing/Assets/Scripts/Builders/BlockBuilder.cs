@@ -5,7 +5,7 @@ using Packing_3D.UI;
 
 namespace Packing_3D.Builders
 {
-    public class BlockBuilder : MonoBehaviour, IBuilder<Block>
+    public class BlockBuilder : Builder<Block>
     {
         [SerializeField]
         private GameObject blockPrefab = null;
@@ -13,7 +13,7 @@ namespace Packing_3D.Builders
         [SerializeField]
         private Shader shader = null;
 
-        public void Build(Block block)
+        public override void Build(Block block)
         {
             var blockObject = Instantiate(blockPrefab, transform);
             var cube = blockObject.transform.GetChild(0);

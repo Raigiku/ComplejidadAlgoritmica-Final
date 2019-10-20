@@ -4,12 +4,12 @@ using Packing_3D.Interfaces;
 
 namespace Packing_3D.Builders
 {
-    public class ContainerBuilder : MonoBehaviour, IBuilder<Container>
+    public class ContainerBuilder : Builder<Container>
     {
         [SerializeField]
         private GameObject containerPrefab = null;
 
-        public void Build(Container container)
+        public override void Build(Container container)
         {
             var containerObject = Instantiate(containerPrefab, transform);
             containerObject.transform.position = container.Position;

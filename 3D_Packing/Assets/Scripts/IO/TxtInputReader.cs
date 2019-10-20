@@ -6,9 +6,9 @@ using Packing_3D.Interfaces;
 
 namespace Packing_3D.IO
 {
-    public class InputReader : IReader
+    public class TxtInputReader : Reader
     {
-        public InputData GetInputData()
+        public override InputData GetInputData()
         {
             var input_lines = File.ReadAllLines(@"Assets\input.txt");
             var containerSize = ParseContainer(input_lines[0].Split(' '));

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Packing_3D.Models;
-using Packing_3D.IO;
 using Packing_3D.Algorithms;
 using Packing_3D.Builders;
 using Packing_3D.Interfaces;
@@ -10,19 +9,20 @@ namespace Packing_3D
 {
     public class ProductManager : MonoBehaviour
     {
-        public IReader InputReader { get; private set; }
-        public IWriter OutputWriter { get; private set; }
-        public IBuilder<Container> ContainerBuilder { get; private set; }
+        [SerializeField]
+        private ContainerBuilder ContainerBuilder = null;
 
         [SerializeField]
-        private AlgorithmsStore algorithmsStore;
+        private Writer txtOutputWriter = null;
 
-        private void Start()
-        {
-            InputReader = new InputReader();
-            OutputWriter = new OutputWriter();
-            ContainerBuilder = GetComponent<ContainerBuilder>();
-        }
+        [SerializeField]
+        private Reader txtInputReader = null;
+
+        [SerializeField]
+        private Reader uiInputReader = null;
+
+        [SerializeField]
+        private AlgorithmsStore algorithmsStore = null;
 
         private void DeletePreviousContainers()
         {
@@ -39,8 +39,12 @@ namespace Packing_3D
             DeletePreviousContainers();
 
             // Obtener la data del input
-            var inputData = InputReader.GetInputData();
-
+            var inputData = txtInputReader.GetInputData();
+            var uiInputData = uiInputReader.GetInputData();
+            if (uiInputData != null)
+            {
+                inputData.ContainerSize = uiInputData.ContainerSize;
+            }
             // Ejecutar el algoritmo seleccionado
             //var containers = algorithmsStore.GetContainers(inputData);
 
@@ -50,66 +54,53 @@ namespace Packing_3D
                 new Container
                 {
                     Position = new Vector3(0, 0, 0),
-                    Size = new Vector3(5, 4, 3),
-                    Blocks = new List<Block>()
-                },
-                new Container
-                {
-                    Position = new Vector3(5, 0, 0),
-                    Size = new Vector3(3, 4, 5),
+                    Size = inputData.ContainerSize,
                     Blocks = new List<Block>()
                 },
             };
-            var formats = new Dictionary<string, Format>
-            {
-                {
-                    "A",
-                    new Format
-                    {
-                        Id = "A",
-                        Size = new Vector3(3, 1, 2),
-                        Blocks = new List<Block>(new Block[10])
-                    }
-                },
-                {
-                    "B",
-                    new Format
-                    {
-                        Id = "B",
-                        Size = new Vector3(2, 3, 1),
-                        Blocks = new List<Block>(new Block[10])
-                    }
-                }
-            };
+            var formats = inputData.Formats;
 
             containers[0].Blocks.Add(new Block
             {
                 Container = containers[0],
                 Format = formats["A"],
                 Position = new Vector3(0, 0, 0),
-                Orientation = 2
+                Orientation = 1
             });
             containers[0].Blocks.Add(new Block
             {
                 Container = containers[0],
                 Format = formats["B"],
-                Position = new Vector3(1, 1, 0),
-                Orientation = 1
+                Position = new Vector3(10, 10, 10),
+                Orientation = 2
             });
-
-            containers[1].Blocks.Add(new Block
+            containers[0].Blocks.Add(new Block
             {
                 Container = containers[0],
-                Format = formats["A"],
-                Position = new Vector3(0, 1, 0),
-                Orientation = 1
+                Format = formats["C"],
+                Position = new Vector3(20, 20, 20),
+                Orientation = 3
             });
-            containers[1].Blocks.Add(new Block
+            containers[0].Blocks.Add(new Block
             {
                 Container = containers[0],
-                Format = formats["B"],
-                Position = new Vector3(0, 0, 2),
-                Orientation = 1
+                Format = formats["D"],
+                Position = new Vector3(30, 30, 30),
+                Orientation = 4
+            });
+            containers[0].Blocks.Add(new Block
+            {
+                Container = containers[0],
+                Format = formats["E"],
+                Position = new Vector3(40, 40, 40),
+                Orientation = 5
+            });
+            containers[0].Blocks.Add(new Block
+            {
+                Container = containers[0],
+                Format = formats["F"],
+                Position = new Vector3(50, 50, 50),
+                Orientation = 6
             });
             // EJEMPLO: porque necesito lo que bote los algoritmos
 
@@ -121,7 +112,7 @@ namespace Packing_3D
 
             // Escribir archivo de texto con el output
             // Debe recibir la lista de contenedores
-            OutputWriter.WriteFile();
+            txtOutputWriter.WriteFile();
         }
     }
 }
