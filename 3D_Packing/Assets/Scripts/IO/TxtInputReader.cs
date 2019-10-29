@@ -12,12 +12,12 @@ namespace Packing_3D.IO
         {
             var input_lines = File.ReadAllLines(@"Assets\input.txt");
             var containerSize = ParseContainer(input_lines[0].Split(' '));
-            var formats = ParseFormats(input_lines);
+            var blocks = ParseBlocks(input_lines);
 
             return new InputData
             {
                 ContainerSize = containerSize,
-                Formats = formats
+                Blocks = blocks
             };
         }
 
@@ -30,8 +30,9 @@ namespace Packing_3D.IO
             return new Vector3(width, height, length);
         }
 
-        private Dictionary<string, Format> ParseFormats(string[] input_lines)
+        private List<Block> ParseBlocks(string[] input_lines)
         {
+            List<Block> blocks = new List<Block>();
             Dictionary<string, Format> formats = new Dictionary<string, Format>();
 
             var total_formats = int.Parse(input_lines[1]);
@@ -60,12 +61,14 @@ namespace Packing_3D.IO
                     {
                         Position = Vector3.zero,
                         Container = null,
-                        Format = formats[id]
+                        Format = formats[id],
+                        Orientation = 1
                     });
                 }
+                blocks.AddRange(formats[id].Blocks);
             }
 
-            return formats;
+            return blocks;
         }
     }
 }

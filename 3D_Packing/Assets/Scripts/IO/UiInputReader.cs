@@ -37,7 +37,7 @@ namespace Packing_3D.IO
                 return new InputData
                 {
                     ContainerSize = ContainerSize,
-                    Formats = null
+                    Blocks = null
                 };
             }
         }

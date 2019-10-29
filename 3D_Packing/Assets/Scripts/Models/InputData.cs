@@ -6,6 +6,6 @@ namespace Packing_3D.Models
     public class InputData
     {
         public Vector3 ContainerSize { get; set; }
-        public Dictionary<string, Format> Formats { get; set; }
+        public List<Block> Blocks { get; set; }
     }
 }
