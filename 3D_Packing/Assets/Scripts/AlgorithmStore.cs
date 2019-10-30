@@ -2,10 +2,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Packing_3D.Models;
+using Packing_3D.Algorithms;
 
-namespace Packing_3D.Algorithms
+namespace Packing_3D
 {
-    public class AlgorithmsStore : MonoBehaviour
+    public class AlgorithmStore : MonoBehaviour
     {
         public List<Algorithm> Algorithms { get; private set; }
         public int SelectedAlgorithm { get; private set; }
@@ -13,21 +14,27 @@ namespace Packing_3D.Algorithms
         [SerializeField]
         private TMP_Text algorithmText = null;
 
+        [SerializeField]
+        private TMP_Text memoryText = null;
+
+        [SerializeField]
+        private TMP_Text timeText = null;
+
         private void Start()
         {
             SelectedAlgorithm = 0;
 
             Algorithms = new List<Algorithm>
             {
-                new Algorithm1.Main
+                new Algorithms.Algorithm1.Main
                 {
                     Name = "Algoritmo 1"
                 },
-                new Algorithm2.Main
+                new Algorithms.Algorithm2.Main
                 {
                     Name = "Algoritmo 2"
                 },
-                new Algorithm3.Main
+                new Algorithms.Algorithm3.Main
                 {
                     Name = "Algoritmo 3"
                 }
@@ -45,7 +52,12 @@ namespace Packing_3D.Algorithms
 
         public List<Container> GetContainers(InputData inputData)
         {
-            return Algorithms[SelectedAlgorithm].GetContainers(inputData);
+            var containers = Algorithms[SelectedAlgorithm].GetContainers(inputData);
+            
+            memoryText.text = "Memoria: " + Algorithms[SelectedAlgorithm].MemoryUsed + " KB";
+            timeText.text = "Tiempo: " + Algorithms[SelectedAlgorithm].TimeElapsed + " s";
+
+            return containers;
         }
     }
 }

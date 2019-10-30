@@ -13,9 +13,10 @@ namespace Packing_3D.Builders
         [SerializeField]
         private Shader shader = null;
 
-        public override void Build(Block block)
+        public override GameObject Build(Block block)
         {
             var blockObject = Instantiate(blockPrefab, transform);
+
             var cube = blockObject.transform.GetChild(0);
 
             var cubeIdUI = cube.GetComponent<Id>();
@@ -53,6 +54,8 @@ namespace Packing_3D.Builders
             var material = new Material(shader);
             material.color = Random.ColorHSV();
             cube.GetComponent<Renderer>().material = material;
+
+            return blockObject;
         }
     }
 }

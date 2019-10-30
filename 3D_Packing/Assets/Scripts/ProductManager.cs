@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using Packing_3D.Models;
-using Packing_3D.Algorithms;
 using Packing_3D.Builders;
 using Packing_3D.Interfaces;
 
@@ -22,7 +19,10 @@ namespace Packing_3D
         private Reader uiInputReader = null;
 
         [SerializeField]
-        private AlgorithmsStore algorithmsStore = null;
+        private AlgorithmStore algorithmStore = null;
+
+        [SerializeField]
+        private ContainerStore containerStore = null;
 
         private void DeletePreviousContainers()
         {
@@ -46,12 +46,16 @@ namespace Packing_3D
                 inputData.ContainerSize = uiInputData.ContainerSize;
             }
             // Ejecutar el algoritmo seleccionado
-            var containers = algorithmsStore.GetContainers(inputData);
+            var containers = algorithmStore.GetContainers(inputData);
 
             // Graficar los resultados
-            foreach (var container in containers)
+            for (int i = 0; i < containers.Count; ++i)
             {
-                ContainerBuilder.Build(container);
+                containerStore.ContainerGameObjects.Add(ContainerBuilder.Build(containers[i]));
+                if (i == 0)
+                {
+                    containerStore.ContainerGameObjects[0].SetActive(true);
+                }
             }
 
             // Escribir archivo de texto con el output

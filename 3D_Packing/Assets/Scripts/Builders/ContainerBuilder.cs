@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Packing_3D.Models;
 using Packing_3D.Interfaces;
+using System.Collections.Generic;
 
 namespace Packing_3D.Builders
 {
@@ -9,9 +10,11 @@ namespace Packing_3D.Builders
         [SerializeField]
         private GameObject containerPrefab = null;
 
-        public override void Build(Container container)
+        public override GameObject Build(Container container)
         {
             var containerObject = Instantiate(containerPrefab, transform);
+            containerObject.SetActive(false);
+
             containerObject.transform.position = container.Position;
 
             var containerBox = containerObject.transform.GetChild(0);
@@ -26,6 +29,8 @@ namespace Packing_3D.Builders
             {
                 blockBuilder.Build(block);
             }
+
+            return containerObject;
         }
     }
 }

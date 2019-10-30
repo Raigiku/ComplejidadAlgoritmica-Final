@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Assets.Scripts.Algorithms.Algorithm1;
 using Packing_3D.Models;
 using UnityEngine;
@@ -24,7 +26,18 @@ namespace Packing_3D.Algorithms.Algorithm1
             Packer packer = new Packer(size);
 
             // Algorithm execution
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var initialMemory = GC.GetTotalMemory(false);
+
             List<Container> containers = packer.Insert(blocks);
+
+            var finalMemory = GC.GetTotalMemory(false);
+            stopWatch.Stop();
+            TimeSpan timeElapsedSpan = stopWatch.Elapsed;
+
+            TimeElapsed = timeElapsedSpan.TotalSeconds.ToString();
+            MemoryUsed = ((finalMemory - initialMemory) / 1_024).ToString();
 
             return containers;
         }
