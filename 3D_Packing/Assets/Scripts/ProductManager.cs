@@ -26,11 +26,11 @@ namespace Packing_3D
 
         private void DeletePreviousContainers()
         {
-            var containerObjects = GameObject.FindGameObjectsWithTag("Container");
-            foreach (var containerObject in containerObjects)
+            foreach (var containerObject in containerStore.ContainerGameObjects)
             {
                 Destroy(containerObject);
             }
+            containerStore.ContainerGameObjects.Clear();
         }
 
         public void CreateProduct()
