@@ -28,15 +28,15 @@ namespace Packing_3D
             {
                 new Algorithms.Algorithm1.Main
                 {
-                    Name = "Algoritmo 1"
+                    Name = "Binary Tree"
                 },
                 new Algorithms.Algorithm2.Main
                 {
-                    Name = "Algoritmo 2"
+                    Name = "First Fit Decreasing Height"
                 },
                 new Algorithms.Algorithm3.Main
                 {
-                    Name = "Algoritmo 3"
+                    Name = "Bricklaying Best Fit"
                 }
             };
         }
