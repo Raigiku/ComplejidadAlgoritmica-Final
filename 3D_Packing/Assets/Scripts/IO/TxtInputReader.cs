@@ -62,7 +62,8 @@ namespace Packing_3D.IO
                         Position = Vector3.zero,
                         Container = null,
                         Format = formats[id],
-                        Orientation = 1
+                        Orientation = 1,
+                        Size = formats[id].Size
                     });
                 }
                 blocks.AddRange(formats[id].Blocks);
