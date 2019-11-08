@@ -7,7 +7,7 @@ Para el mostrado del resultado, presionar el botón "Crear Bloques".
 
 Controles:
 
-Arrastrar con el mouse: mover cámara
+- Arrastrar con el mouse: mover cámara
 
 - W: acercar la cámara
 
