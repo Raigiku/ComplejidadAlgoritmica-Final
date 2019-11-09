@@ -11,10 +11,13 @@ namespace Packing_3D.Models
 
         public Container() { }
 
-        public static Container WithBlocksInitialized()
+        public static Container WithBlocksInitialized(Vector3 size)
         {
             Container container = new Container();
             container.Blocks = new List<Block>();
+
+            container.Size = size;
+
             return container;
         }
 

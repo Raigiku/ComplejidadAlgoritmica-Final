@@ -30,7 +30,8 @@ namespace Assets.Scripts.Algorithms.Algorithm1
                 Position = new Vector3(0, 0, 0),
                 Size = new Vector3(Size.x, Size.y, Size.z)
             });
-            Containers.Add(Container.WithBlocksInitialized());
+
+            Containers.Add(Container.WithBlocksInitialized(Size));
         }
 
 
@@ -45,6 +46,7 @@ namespace Assets.Scripts.Algorithms.Algorithm1
             Nodes.Add(newNode);
 
             Container newContainer = new Container();
+            newContainer.Size = Size;
             newContainer.AddBlock(block);
             Containers.Add(newContainer);
         }
