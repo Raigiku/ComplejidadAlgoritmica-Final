@@ -32,7 +32,7 @@ namespace Packing_3D.IO
                 file.WriteLine($"{FormatQuantity}");
                 for (int i = 0; i < FormatQuantity; ++i)
                 {
-                    int quantity = random.Next(1, 100);
+                    int quantity = random.Next(1, 50);
                     file.WriteLine($"{quantity} {Formats[i].Id} {Formats[i].Size.x} {Formats[i].Size.y} {Formats[i].Size.z}");
                 }
             }
@@ -47,11 +47,11 @@ namespace Packing_3D.IO
 
         public void GenerateInput()
         {
-            Lenght = random.Next(1, 500);
+            Lenght = random.Next(1, 100);
             Hight = random.Next(1, Lenght);
             Width = random.Next(1, Hight);
 
-            FormatQuantity = random.Next(1, 500);
+            FormatQuantity = random.Next(1, 100);
 
 
 
