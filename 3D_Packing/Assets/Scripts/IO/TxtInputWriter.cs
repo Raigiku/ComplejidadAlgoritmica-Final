@@ -26,8 +26,17 @@ namespace Packing_3D.IO
         public override void WriteFile()
         {
             var inputData = uiInputReader.GetInputData();
-            print(inputData.ContainerSize);
-
+            //(inputData.ContainerSize);
+            if (inputData != null)
+            {
+                Width = (int)inputData.ContainerSize.x;
+                Hight = (int)inputData.ContainerSize.y;
+                Lenght = (int)inputData.ContainerSize.z;
+            }
+            else
+            {
+                Lenght = -1;
+            }
             Initializer();
             GenerateInput();
 
@@ -52,10 +61,12 @@ namespace Packing_3D.IO
 
         public void GenerateInput()
         {
-            Lenght = random.Next(1, 100);
-            Hight = random.Next(1, Lenght);
-            Width = random.Next(1, Hight);
-
+            if (Lenght == -1)
+            {
+                Lenght = random.Next(1, 100);
+                Hight = random.Next(1, Lenght);
+                Width = random.Next(1, Hight);
+            }
             FormatQuantity = random.Next(1, 100);
 
 
