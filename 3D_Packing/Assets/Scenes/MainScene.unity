@@ -4267,6 +4267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9004cca776fb0e498decec6644c6e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiInputReader: {fileID: 1742593369}
 --- !u!114 &1742593371
 MonoBehaviour:
   m_ObjectHideFlags: 0

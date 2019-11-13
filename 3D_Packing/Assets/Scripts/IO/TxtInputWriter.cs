@@ -20,8 +20,13 @@ namespace Packing_3D.IO
         StringBuilder Id;
         System.Random random;
 
+        [SerializeField]
+        private Reader uiInputReader = null;
+
         public override void WriteFile()
         {
+            var inputData = uiInputReader.GetInputData();
+            print(inputData.ContainerSize);
 
             Initializer();
             GenerateInput();
