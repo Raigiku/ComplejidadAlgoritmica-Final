@@ -13,6 +13,9 @@ namespace Packing_3D
         [SerializeField]
         private TMP_Text containerText = null;
 
+        [SerializeField]
+        private TMP_Text totalContainersText = null;
+
         private void Start()
         {
             SelectedContainer = 0;
@@ -32,6 +35,18 @@ namespace Packing_3D
                     containerText.text = "Contenedor " + (SelectedContainer + 1).ToString();
                 }
             }
+        }
+
+        public void ResetSelectedContainer()
+        {
+            SelectedContainer = 0;
+            ContainerGameObjects[SelectedContainer].SetActive(true);
+            containerText.text = "Contenedor " + (SelectedContainer + 1).ToString();
+        }
+
+        public void ShowTotalContainers()
+        {
+            totalContainersText.text = ContainerGameObjects.Count + " contenedores";
         }
     }
 }

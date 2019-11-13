@@ -52,11 +52,9 @@ namespace Packing_3D
             for (int i = 0; i < containers.Count; ++i)
             {
                 containerStore.ContainerGameObjects.Add(ContainerBuilder.Build(containers[i]));
-                if (i == 0)
-                {
-                    containerStore.ContainerGameObjects[0].SetActive(true);
-                }
             }
+            containerStore.ResetSelectedContainer();
+            containerStore.ShowTotalContainers();
 
             // Escribir archivo de texto con el output
             // Debe recibir la lista de contenedores
