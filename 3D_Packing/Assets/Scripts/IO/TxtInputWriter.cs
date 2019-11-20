@@ -9,7 +9,6 @@ namespace Packing_3D.IO
 {
     public class TxtInputWriter : Writer
     {
-
         int Width;
         int Hight;
         int Lenght;
@@ -23,7 +22,7 @@ namespace Packing_3D.IO
         [SerializeField]
         private Reader uiInputReader = null;
 
-        public override void WriteFile()
+        public override void WriteFile(List<Container> containers)
         {
             var inputData = uiInputReader.GetInputData();
             //(inputData.ContainerSize);

@@ -58,7 +58,7 @@ namespace Packing_3D
 
             // Escribir archivo de texto con el output
             // Debe recibir la lista de contenedores
-            txtOutputWriter.WriteFile();
+            txtOutputWriter.WriteFile(containers);
         }
     }
 }
