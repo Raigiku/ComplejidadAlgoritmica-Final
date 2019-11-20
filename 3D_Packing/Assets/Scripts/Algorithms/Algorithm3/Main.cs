@@ -12,15 +12,13 @@ namespace Packing_3D.Algorithms.Algorithm3
         private BBF algoritmo;
         public override List<Container> GetContainers(InputData data)
         {
-            SortBlocks(data.Blocks, data.ContainerSize);
-            algoritmo = new BBF(data.ContainerSize, data.Blocks);
-
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             var initialMemory = GC.GetTotalMemory(false);
 
+            SortBlocks(data.Blocks, data.ContainerSize);
+            algoritmo = new BBF(data.ContainerSize, data.Blocks);
             algoritmo.run();
-            // Poner la ejecucion del algoritmo aqui
 
             var finalMemory = GC.GetTotalMemory(false);
             stopWatch.Stop();

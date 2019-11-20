@@ -9,8 +9,15 @@ namespace Packing_3D.Algorithms.Algorithm2
 {
     public class Main : Algorithm
     {
+        private Stopwatch stopwatch;
+        private long initialMemory;
+
         public override List<Container> GetContainers(InputData data)
         {
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+            initialMemory = GC.GetTotalMemory(false);
+
             SortBlocks(data.Blocks, data.ContainerSize);
             var containers = CreateContainers(data.Blocks, data.ContainerSize);
             return containers;
@@ -58,10 +65,6 @@ namespace Packing_3D.Algorithms.Algorithm2
 
         private List<Container> CreateContainers(List<Block> blocks, Vector3 containerSize)
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-            var initialMemory = GC.GetTotalMemory(false);
-
             var containers = new List<ContainerLevel>();
             foreach (var block in blocks)
             {
@@ -84,8 +87,8 @@ namespace Packing_3D.Algorithms.Algorithm2
             }
 
             var finalMemory = GC.GetTotalMemory(false);
-            stopWatch.Stop();
-            TimeSpan timeElapsedSpan = stopWatch.Elapsed;
+            stopwatch.Stop();
+            TimeSpan timeElapsedSpan = stopwatch.Elapsed;
 
             TimeElapsed = timeElapsedSpan.TotalSeconds.ToString();
             MemoryUsed = ((finalMemory - initialMemory) / 1_024).ToString();

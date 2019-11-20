@@ -14,6 +14,10 @@ namespace Packing_3D.Algorithms.Algorithm1
             Vector3 size = data.ContainerSize;
             List<Block> blocks = data.Blocks;
 
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var initialMemory = GC.GetTotalMemory(false);
+
             blocks.Sort((Block a, Block b) =>
             {
                 if (a.Volume < b.Volume)
@@ -26,10 +30,6 @@ namespace Packing_3D.Algorithms.Algorithm1
             Packer packer = new Packer(size);
 
             // Algorithm execution
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-            var initialMemory = GC.GetTotalMemory(false);
-
             List<Container> containers = packer.Insert(blocks);
 
             var finalMemory = GC.GetTotalMemory(false);
