@@ -8,7 +8,7 @@ namespace Packing_3D.IO
 {
     public class TxtOutputWriter : Writer
     {
-        public override void WriteFile()
+        public override void WriteFile(List<Container> containers)
         {
             /*
                 2 3 5
@@ -34,6 +34,7 @@ namespace Packing_3D.IO
              */
 
             // Datos asumidos (por referencias)
+            /*
             Vector3 containerSize = new Vector3(2, 3, 5);
             List<Format> formats = new List<Format>
             {
@@ -41,9 +42,10 @@ namespace Packing_3D.IO
                 new Format { Id = "B", Size = new Vector3(1, 2, 3) },
                 new Format { Id = "C", Size = new Vector3(1, 2, 5) }
             };
-
+            */
 
             // Datos de entrada
+            /*
             List<Container> containers = new List<Container> {
                 new Container
                 {
@@ -96,7 +98,7 @@ namespace Packing_3D.IO
                     }
                 }
             };
-
+            */
 
             // Inicio del algoritmo
             Container firstContainer = containers.FirstOrDefault();
