@@ -32,7 +32,7 @@ namespace Packing_3D
                 },
                 new Algorithms.Algorithm2.Main
                 {
-                    Name = "First Fit Decreasing Height"
+                    Name = "First Fit Decreasing Volume"
                 },
                 new Algorithms.Algorithm3.Main
                 {
