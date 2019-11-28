@@ -30,4 +30,4 @@ Controles:
 
 ## Ejemplo
 
-![alt text](Complejidad_Algoritmica_cYwAfmZ9Ub.png)
+![alt text](screenshot.png)
