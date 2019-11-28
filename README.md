@@ -1,4 +1,11 @@
 # WV72-CC76-ComplejidadAlgoritmica-Final
+
+<p align="center">
+  <img src="algorithm-icon.png">
+</p>
+
+Descargar la versión 1.0 de la sección Releases.
+
 Para el ingreso de input manual, modificar el archivo "Assets/input.txt".
 
 Los datos de salida se encuentran en "Assets/output.txt".
@@ -20,3 +27,7 @@ Controles:
 - **R:** mover la cámara hacia arriba
 
 - **F:** mover la cámara hacia abajo
+
+## Ejemplo
+
+![alt text](Complejidad_Algoritmica_cYwAfmZ9Ub.png)
